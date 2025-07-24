@@ -1,0 +1,32 @@
+{
+  "name": "ragboost",
+  "version": "1.0.0",
+  "description": "a quick to deploy RAG application written in express with modular parameters and well defined General APIs for quick integreation and also have modularity of tools of your choice",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "nodemon --exec node -r ts-node/register --env-file=.env src/index.ts"
+  },
+  "author": "Apratim Ray",
+  "license": "MIT",
+  "dependencies": {
+    "@chroma-core/default-embed": "^0.1.8",
+    "@langchain/community": "^0.3.49",
+    "@langchain/core": "^0.3.64",
+    "@langchain/langgraph": "^0.3.9",
+    "@langchain/openai": "^0.6.1",
+    "chromadb": "^3.0.9",
+    "express": "^5.1.0",
+    "langchain": "^0.3.30",
+    "mongoose": "^8.16.4",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.0.14",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
