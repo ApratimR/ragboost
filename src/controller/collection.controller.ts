@@ -3,7 +3,7 @@ import { collectionValidationSchema } from "../model/collection.model";
 import { getVectorStore } from "../provider/langchain.provider";
 
 
-async function getCollections (limit: number = 10, offset: number = 0, id: string | null = null) {
+export async function getCollections (limit: number = 10, offset: number = 0, id: string | null = null) {
     if(!id){
         var payload = {}
         const collectionData = await Collection.find({}).limit(limit).skip(offset).exec();
@@ -20,7 +20,7 @@ async function getCollections (limit: number = 10, offset: number = 0, id: strin
     }
 }
 
-async function createCollection(data:typeof collectionValidationSchema._type) {
+export async function createCollection(data:typeof collectionValidationSchema._type) {
     const collection = new Collection(data);
     await collection.save();
     
@@ -30,6 +30,11 @@ async function createCollection(data:typeof collectionValidationSchema._type) {
     return collection;
 }
 
-
-
-export {getCollections,createCollection};
+export async function deleteCollection(id: string) {
+    // maybe soft delete in future
+    const collection = await Collection.findByIdAndDelete(id).exec();
+    if (!collection) {
+        return null
+    }
+    return collection;
+}

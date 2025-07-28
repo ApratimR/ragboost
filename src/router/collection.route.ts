@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createCollection, getCollections } from "../controller/collection.controller";
+import { createCollection, deleteCollection, getCollections } from "../controller/collection.controller";
 import { collectionValidationSchema } from "../model/collection.model";
 
 
@@ -22,6 +22,17 @@ collectionRouter.post('/', async (req, res) => {
     console.log('Request to create collection:', request);
     const data = await createCollection(request);
     return res.status(201).json(data);
+})
+
+collectionRouter.delete('/:id', async (req, res) => {
+    const id = req.params.id;
+    
+    const data = await deleteCollection(id);
+
+    if (!data) {
+        return res.status(404).json({ message: 'Collection not found' });
+    }
+    return res.status(200).json({ message: 'Collection deleted successfully', collection: data });
 })
 
 
