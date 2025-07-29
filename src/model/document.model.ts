@@ -40,7 +40,11 @@ const documentSchema = new Schema({
         index: true
     },
 
-    // Need to add metadata for the document
+    metadata:{
+        type: Schema.Types.Mixed,
+        required: false,
+        default: {}
+    },
 
     status: {
         type: String,
