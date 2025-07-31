@@ -83,6 +83,8 @@ const collectionSchema = new Schema({
         required: false,
         default: null
     }
+},{
+  timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
 });
 
 const collectionValidationSchema = z.object({

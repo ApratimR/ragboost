@@ -40,7 +40,7 @@ const documentSchema = new Schema({
         index: true
     },
 
-    metadata:{
+    metadata: {
         type: Schema.Types.Mixed,
         required: false,
         default: {}
@@ -75,4 +75,50 @@ const documentSchema = new Schema({
         default: null,
         min: 0
     },
+
+    // Error handling
+    error_message: {
+        type: String,
+        required: false,
+        default: null,
+        maxlength: 1000
+    },
+    retry_count: {
+        type: Number,
+        required: true,
+        default: 0,
+        min: 0
+    },
+    max_retries: {
+        type: Number,
+        required: true,
+        default: 3,
+        min: 0,
+        max: 10
+    },
+    created_at: {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
+    updated_at: {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
+
+    // Soft delete
+    is_deleted: {
+        type: Boolean,
+        required: true,
+        default: false,
+        index: true
+    },
+    deleted_at: {
+        type: Date,
+        required: false,
+        default: null
+    }
+}, {
+    timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
 })
