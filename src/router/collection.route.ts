@@ -18,8 +18,7 @@ collectionRouter.get('/', async (req, res) => {
 
 // Route to create a new collection
 collectionRouter.post('/', async (req, res) => {
-    let request = collectionValidationSchema.parse(req.body);
-    console.log('Request to create collection:', request);
+    let request = await collectionValidationSchema.parseAsync(req.body);
     const data = await createCollection(request);
     return res.status(201).json(data);
 })

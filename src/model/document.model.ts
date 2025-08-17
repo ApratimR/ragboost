@@ -122,3 +122,8 @@ const documentSchema = new Schema({
 }, {
     timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
 })
+
+const Document = model('Document', documentSchema);
+
+
+export default Document
